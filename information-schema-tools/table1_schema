@@ -1,0 +1,23 @@
+  [
+    {
+      "mode": "REQUIRED",
+      "name": "column1",
+      "type": "STRING"
+    },
+    {
+      "mode": "REQUIRED",
+      "name": "column2",
+      "type": "FLOAT"
+    },
+    {
+      "mode": "REPEATED",
+      "name": "column3",
+      "type": "STRING"
+    },
+    {
+      "description": "my new column",
+      "mode": "NULLABLE",
+      "name": "column4",
+      "type": "STRING"
+    }
+  ]
