@@ -21,7 +21,7 @@ WITH
         NULL) AS new_option_value,
       option_value AS original_option_value
     FROM
-      prototype_tf_main_ingest.INFORMATION_SCHEMA.TABLE_OPTIONS t_o ), # Set to your dataset for TABLE_OPTIONS
+      hellometadata.INFORMATION_SCHEMA.TABLE_OPTIONS t_o ), # Set to your dataset for TABLE_OPTIONS
   
   # Create arrays and structs for the options and values.
   table_options_struct AS (
@@ -57,7 +57,7 @@ WITH
         data_type as type,
         description)) column
   FROM
-    prototype_tf_main_ingest.INFORMATION_SCHEMA.COLUMN_FIELD_PATHS # Set to your dataset for COLUMN_FIELD_PATHS
+    hellometadata.INFORMATION_SCHEMA.COLUMN_FIELD_PATHS # Set to your dataset for COLUMN_FIELD_PATHS
   GROUP BY
     table_name )
 

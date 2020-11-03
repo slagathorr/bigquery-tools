@@ -5,11 +5,13 @@
         "mode": "NULLABLE"
     },
     {
+        "description": "who are you",
         "name": "first_name",
         "type": "STRING",
         "mode": "NULLABLE"
     },
     {
+        "description": "who who, who who",
         "name": "last_name",
         "type": "STRING",
         "mode": "NULLABLE"
@@ -25,6 +27,7 @@
         "mode": "REPEATED",
         "fields": [
             {
+                "description": "Some sort of status field here.",
                 "name": "status",
                 "type": "STRING",
                 "mode": "NULLABLE"
@@ -40,6 +43,7 @@
                 "mode": "NULLABLE"
             },
             {
+                "description": "Your state!",
                 "name": "state",
                 "type": "STRING",
                 "mode": "NULLABLE"
