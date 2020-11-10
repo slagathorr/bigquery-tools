@@ -53,8 +53,10 @@ WITH
   COLUMNS AS (
   SELECT
     table_name,
-    ARRAY_AGG(STRUCT(column_name as name,
-        data_type as type,
+    ARRAY_AGG(STRUCT(
+        column_name AS name,
+        field_path AS field_paths,
+        data_type AS type,
         description)) column
   FROM
     hellometadata.INFORMATION_SCHEMA.COLUMN_FIELD_PATHS # Set to your dataset for COLUMN_FIELD_PATHS
