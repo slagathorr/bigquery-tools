@@ -55,7 +55,7 @@ WITH
     table_name,
     ARRAY_AGG(STRUCT(
         column_name AS name,
-        field_path AS field_paths,
+        field_path AS field_path,
         data_type AS type,
         description)) column
   FROM
