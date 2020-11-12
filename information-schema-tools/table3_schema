@@ -1,0 +1,13 @@
+[
+    {
+        "name": "id",
+        "type": "NUMERIC",
+        "mode": "NULLABLE"
+    },
+    {
+        "description": "I am a simple table.",
+        "name": "first_column",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    }
+]

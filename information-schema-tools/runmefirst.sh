@@ -1,4 +1,4 @@
-bq mk --dataset --default_table_expiration 3600 --description "Hello, metadata world!" hellometadata
+bq mk --dataset --description "Hello, metadata world!" hellometadata
 bq mk \
 --table \
 --expiration 360000 \
@@ -12,3 +12,5 @@ bq mk -t \
 --label organization:development --label category:cool-data \
 hellometadata.second_table \
 table2_schema
+bq mk -t \
+hellometadata.third_table \
