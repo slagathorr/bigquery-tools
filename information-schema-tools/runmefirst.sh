@@ -14,3 +14,4 @@ hellometadata.second_table \
 table2_schema
 bq mk -t \
 hellometadata.third_table \
+table3_schema
