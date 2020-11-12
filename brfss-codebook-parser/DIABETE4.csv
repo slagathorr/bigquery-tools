@@ -1,0 +1,18 @@
+Label,(Ever told) you had diabetes,,,
+Section Name,Chronic Health Conditions,,,
+Section Number,6,,,
+Question Number,11,,,
+Column,127,,,
+Type of Variable,Num,,,
+SAS Variable Name,DIABETE4,,,
+Question Prologue,,,,
+Question,"(Ever told) (you had) diabetes?  (If ´Yes´ and respondent is female, ask ´Was this only when you were pregnant?´. If Respondent says pre-diabetes or borderline diabetes, use response code 4.)",,,
+DATA,,,,
+Value,Value Label,Frequency,Percentage,Weighted Percentage
+1,Yes,"57,401",13.72,11.08
+2,"Yes, but female told only during pregnancy","3,782",0.9,1.03
+3,No,"347,091",82.98,85.57
+4,No,"9,149",2.19,2.1
+7,Don’t know/Not Sure,605,0.14,0.17
+9,Refused,231,0.06,0.05
+,Not asked or Missing,9,.,.

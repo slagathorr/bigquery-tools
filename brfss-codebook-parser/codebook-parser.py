@@ -9,11 +9,12 @@ table_name_label = 'SAS Variable Name' # Change this to what marks your table na
 
 table_name = ""
 description = ""
-labels = []
+labels = [{'table-type': 'brfss-codebook'}]
 
 bq_client = bigquery.Client()
 
 def parse_file():
+  print("START PARSE FILE")
   global description
   global labels
   global table_name
@@ -30,7 +31,7 @@ def parse_file():
           print("Set the table name", table_name)
         elif row[0] == 'Label':
           description = description + "Label: " + row[1]
-          print("Set the lable field", description)
+          print("Set the label field to description", description)
         elif row[0] == 'Section Name':
           labels.append({'section-name': row[1].replace(' ', '-').lower()})
           print("Set the section name", labels)
@@ -56,6 +57,7 @@ def parse_file():
       print(table_name, description)
 
 def create_load_table():
+  print("START LOAD TABLE")
   global bq_client
 
   # TODO(developer): Set table_id to the ID of the table to create.
@@ -80,6 +82,9 @@ def create_load_table():
   dataset_ref = bigquery.DatasetReference(project, 'brfss')
   table_ref = dataset_ref.table(table_name)
   table = bq_client.get_table(table_ref)  # API request
+
+  table.description = description
+  table = bq_client.update_table(table, ["description"])
 
   for label in labels:
     print(label, type(label))

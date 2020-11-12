@@ -1,22 +1,7 @@
 Value,Value Label,Frequency,Percentage,Weighted Percentage
-1,"Number of adults in the household—Go to LL.09, LANDSEX","63,263",42.2,24.44
-2,"Number of adults in the household—Go to LL.10, NUMMEN","70,025",46.71,51.38
-3,"Number of adults in the household—Go to LL.10, NUMMEN","11,750",7.84,15.11
-4,"Number of adults in the household—Go to LL.10, NUMMEN","3,636",2.43,6.64
-5,"Number of adults in the household—Go to LL.10, NUMMEN",884,0.59,1.74
-6,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-7,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-8,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-9,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-10,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-11,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-12,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-13,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-14,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-15,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-16,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-17,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-18,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-19,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-20,"6 or more—Go to LL.10, NUMMEN",360,0.24,0.69
-,MISSING,"268,350",,
+1,"White, Non-Hispanic","318,594",76.17,62.26
+2,"Black, Non-Hispanic","31,735",7.59,11.69
+3,"Asian, Non-Hispanic","9,296",2.22,5.28
+4,"American Indian/Alaskan Native, Non-Hispanic","6,697",1.6,1.06
+5,Hispanic,"37,527",8.97,17.52
+6,"Other race, Non-Hispanic","14,419",3.45,2.2
