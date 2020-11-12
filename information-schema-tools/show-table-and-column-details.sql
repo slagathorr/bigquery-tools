@@ -6,22 +6,29 @@ WITH
   # Parse out and clean up the option_value column from TABLE_OPTIONS
   cleaned_table_options AS (
     SELECT
-      table_catalog,
-      table_schema,
-      table_name,
-      option_name,
-    IF
-      (t_o.option_name = "labels",
-        SPLIT( REPLACE( REPLACE( REPLACE( 
-          SUBSTR(t_o.option_value, 2, LENGTH(option_value)-4), 
-          "STRUCT(\"", '' ), 
-          "\", \"", ":" ), 
-          "\"), ", "," )
+      t.table_catalog,
+      t.table_schema,
+      t.table_name,
+      t.table_type,
+      t_o.option_name,
+      IF
+        (t_o.option_name = "labels",
+          SPLIT( REPLACE( REPLACE( REPLACE( 
+            SUBSTR(t_o.option_value, 2, LENGTH(option_value)-4), 
+            "STRUCT(\"", '' ), 
+            "\", \"", ":" ), 
+            "\"), ", "," )
           ),
         NULL) AS new_option_value,
-      option_value AS original_option_value
+      t_o.option_value AS original_option_value
     FROM
-      hellometadata.INFORMATION_SCHEMA.TABLE_OPTIONS t_o ), # Set to your dataset for TABLE_OPTIONS
+      hellometadata.INFORMATION_SCHEMA.TABLES t # Set to your dataset for TABLE_OPTIONS
+    LEFT JOIN
+      hellometadata.INFORMATION_SCHEMA.TABLE_OPTIONS t_o # Set to your dataset for TABLE_OPTIONS
+    ON
+      t.table_catalog = t_o.table_catalog
+      AND t.table_schema = t_o.table_schema
+      AND t.table_name = t_o.table_name ), 
   
   # Create arrays and structs for the options and values.
   table_options_struct AS (
@@ -29,6 +36,7 @@ WITH
       cleaned_table_options.table_catalog,
       cleaned_table_options.table_schema,
       cleaned_table_options.table_name,
+      cleaned_table_options.table_type,
     IF
       (option_name = "labels",
         STRUCT(ARRAY_AGG(STRUCT(SPLIT(unnested_option_value, ":")[OFFSET(0)] AS name,
@@ -47,6 +55,7 @@ WITH
       table_catalog,
       table_schema,
       table_name,
+      table_type,
       option_name ),
   
   # Aggregate column information.
@@ -67,6 +76,7 @@ SELECT
   tos.table_catalog,
   tos.table_schema,
   tos.table_name,
+  tos.table_type,
   STRUCT(ARRAY_AGG(tos.label IGNORE NULLS) as label, 
     ARRAY_AGG(tos.option IGNORE NULLS) as option) as table_options,
   ANY_VALUE(columns.column) as column
@@ -79,4 +89,5 @@ ON
 GROUP BY
   tos.table_catalog,
   tos.table_schema,
-  tos.table_name
+  tos.table_name,
+  tos.table_type
