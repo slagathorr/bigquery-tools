@@ -39,7 +39,7 @@ BEGIN
         Ex: `hereismyorg.hereismydataset.hello_profile`
       max_groups:
         Maximum number of groups for certain profile tasks, such as pattern analysis.
-    */
+  */
   
   # DECLARE Working Variables
   DECLARE total_row_count INT64;
