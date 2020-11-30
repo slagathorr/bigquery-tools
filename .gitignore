@@ -31,3 +31,6 @@ override.tf.json
 # fixed-width-parser
 # Full data files
 **/fixed-width-parser/data/*
+
+# Working files for the codebook parser
+**/brfss-codebook-parser/*.csv
