@@ -22,9 +22,9 @@ BEGIN
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    */
+  */
 
-    /*
+  /*
     READ ME FIRST:
     Be sure to understand BigQuery pricing, and the plan that you are on, as you
     will likely be incurring query costs to your project that you are responsible for.
