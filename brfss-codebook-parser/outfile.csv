@@ -1,7 +1,7 @@
 Value,Value Label,Frequency,Percentage,Weighted Percentage
-1,"White, Non-Hispanic","318,594",76.17,62.26
-2,"Black, Non-Hispanic","31,735",7.59,11.69
-3,"Asian, Non-Hispanic","9,296",2.22,5.28
-4,"American Indian/Alaskan Native, Non-Hispanic","6,697",1.6,1.06
-5,Hispanic,"37,527",8.97,17.52
-6,"Other race, Non-Hispanic","14,419",3.45,2.2
+1,Yes,"38,845",65.93,61.61
+2,No,"18,320",31.09,35.39
+7,Don’t know/Not Sure,"1,726",2.93,2.95
+9,Refused,30,0.05,0.05
+,Not asked or Missing,"359,347",,
+,,.,.,

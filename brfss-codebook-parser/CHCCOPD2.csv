@@ -1,0 +1,16 @@
+Label,"(Ever told) (you had) chronic obstructive pulmonary disease, C.O.P.D., emphysema or chronic bronchitis?",,,
+Section Name,Chronic Health Conditions,,,
+Section Number,6,,,
+Question Number,8,,,
+Column,124,,,
+Type of Variable,Num,,,
+SAS Variable Name,CHCCOPD2,,,
+Question Prologue,,,,
+Question,"(Ever told) (you had) chronic obstructive pulmonary disease, C.O.P.D., emphysema or chronic bronchitis?",,,
+DATA,,,,
+Value,Value Label,Frequency,Percentage,Weighted Percentage
+1,Yes,"35,427",8.47,6.55
+2,No,"380,565",90.99,92.97
+7,Don’t know / Not sure,"2,053",0.49,0.44
+9,Refused,215,0.05,0.04
+,Not asked or Missing,8,.,.
