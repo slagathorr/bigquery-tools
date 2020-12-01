@@ -22,9 +22,9 @@ BEGIN
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    */
+  */
 
-    /*
+  /*
     READ ME FIRST:
     Be sure to understand BigQuery pricing, and the plan that you are on, as you
     will likely be incurring query costs to your project that you are responsible for.
@@ -39,7 +39,7 @@ BEGIN
         Ex: `hereismyorg.hereismydataset.hello_profile`
       max_groups:
         Maximum number of groups for certain profile tasks, such as pattern analysis.
-    */
+  */
   
   # DECLARE Working Variables
   DECLARE profile_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP();
@@ -249,7 +249,7 @@ BEGIN
       full_source_table_name,  
       columns_to_profile[OFFSET(column_iterator)],
       max_groups)
-      INTO var_pattern_distribution;
+    INTO var_pattern_distribution;
 
     # Calculate inferred data type
     EXECUTE IMMEDIATE
@@ -274,9 +274,7 @@ BEGIN
       full_source_table_name,
       total_row_count
       )
-      INTO var_inferred_data_type;
-
-    EXECUTE IMMEDIATE "SELECT @var_pattern_distribution" USING var_pattern_distribution as var_pattern_distribution;
+    INTO var_inferred_data_type;
 
     # Write results.
     EXECUTE IMMEDIATE FORMAT("""
@@ -297,10 +295,10 @@ BEGIN
       columns_to_profile[OFFSET(column_iterator)],
       profile_id
       )
-      USING 
-      profile_timestamp as var_profile_timestamp,
-      var_pattern_distribution as var_pattern_distribution,
-      var_inferred_data_type as var_inferred_data_type;
+    USING 
+    profile_timestamp as var_profile_timestamp,
+    var_pattern_distribution as var_pattern_distribution,
+    var_inferred_data_type as var_inferred_data_type;
 
     SET column_iterator = column_iterator + 1;
 
