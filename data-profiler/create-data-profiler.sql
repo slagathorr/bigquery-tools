@@ -1,7 +1,7 @@
 #bigquery
 
 CREATE OR REPLACE PROCEDURE
-  data_profiles.ProfileTable( # REPLACE data_profiles WITH YOUR DATASET
+  data_profiler_test.ProfileTable( # REPLACE data_profiles WITH YOUR DATASET
     full_source_table_name STRING,
     full_destination_table_name STRING,
     max_groups INT64
@@ -70,6 +70,38 @@ BEGIN
   SET source_org_name = SPLIT(TRIM(full_source_table_name, '`'), '.')[OFFSET(0)];
   SET source_project_name = SPLIT(TRIM(full_source_table_name, '`'), '.')[OFFSET(1)];
   SET source_table_name = SPLIT(TRIM(full_source_table_name, '`'), '.')[OFFSET(2)];
+
+  # Create a temp function that does type inference.
+  CREATE TEMP FUNCTION
+    get_type(instring STRING) AS 
+    (
+      CASE
+        WHEN instring IS NULL THEN NULL
+        WHEN 
+        ( 
+          SAFE_CAST(instring AS BOOL) IS NOT NULL
+            OR TRIM(LOWER(instring)) = "yes"
+            OR TRIM(LOWER(instring)) = "no"
+        ) THEN "BOOL"
+        WHEN SAFE_CAST(instring AS INT64) IS NOT NULL THEN "INT64"
+        WHEN SAFE_CAST(instring AS NUMERIC) IS NOT NULL THEN "NUMERIC"
+        WHEN SAFE_CAST(instring AS FLOAT64) IS NOT NULL THEN "FLOAT64"
+        WHEN 
+        (
+          SAFE.PARSE_DATE("%Y-%m-%d", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%m-%d-%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%d-%m-%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%Y/%m/%d", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%m/%d/%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%d/%m/%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%Y.%m.%d", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%m.%d.%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%d.%m.%Y", instring) IS NOT NULL
+            OR SAFE.PARSE_DATE("%B %d, %Y", instring) IS NOT NULL
+        ) THEN "DATE"
+        ELSE "STRING"
+      END
+    );
 
   # Get the list of columns in the table to profile.
   EXECUTE IMMEDIATE
@@ -225,28 +257,7 @@ BEGIN
       WITH raw_data AS (
         SELECT
           COUNT(*) AS type_count,
-          CASE
-            WHEN %s IS NULL THEN NULL
-            WHEN (
-              SAFE_CAST(SAFE_CAST(%s AS STRING) AS BOOL) IS NOT NULL
-              OR TRIM(LOWER(SAFE_CAST(%s AS STRING))) = "yes"
-              OR TRIM(LOWER(SAFE_CAST(%s AS STRING))) = "no") THEN "BOOL"
-            WHEN SAFE_CAST(SAFE_CAST(%s AS STRING) AS INT64) IS NOT NULL THEN "INT64"
-            WHEN SAFE_CAST(SAFE_CAST(%s AS STRING) AS NUMERIC) IS NOT NULL THEN "NUMERIC"
-            WHEN SAFE_CAST(SAFE_CAST(%s AS STRING) AS FLOAT64) IS NOT NULL THEN "FLOAT64"
-            WHEN (
-              SAFE.PARSE_DATE("%%Y-%%m-%%d", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%m-%%d-%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%d-%%m-%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%Y/%%m/%%d", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%m/%%d/%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%d/%%m/%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%Y.%%m.%%d", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%m.%%d.%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%d.%%m.%%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL
-              OR SAFE.PARSE_DATE("%%B %%d, %%Y", SAFE_CAST(%s AS STRING)) IS NOT NULL) THEN "DATE"
-          ELSE "STRING"
-        END AS inferred_type
+          get_type(SAFE_CAST(%s AS STRING)) AS inferred_type
         FROM %s
         GROUP BY inferred_type
         ORDER BY type_count DESC
@@ -259,14 +270,6 @@ BEGIN
           100), 6) AS NUMERIC) AS type_percentage)) AS inferred_data_type
       FROM raw_data;
       """,
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
-      columns_to_profile[OFFSET(column_iterator)],columns_to_profile[OFFSET(column_iterator)],
       columns_to_profile[OFFSET(column_iterator)],
       full_source_table_name,
       total_row_count
