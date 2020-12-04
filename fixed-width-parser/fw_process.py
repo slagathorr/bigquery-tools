@@ -9,8 +9,8 @@ with open('./test_data/brfss_format.csv', mode = 'r') as schema_file:
   line_count = 0
   for row in csv_reader:
     if line_count == 0:
-      print "Column names are: "
-      print row
+      print ("Column names are: ")
+      print (row)
       line_count += 1
     else:
       column_list.append({"name": row[0], "start": int(row[1]), "length": int(row[2])})
