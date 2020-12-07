@@ -1,0 +1,19 @@
+[
+    {
+        "name": "id",
+        "type": "NUMERIC",
+        "mode": "NULLABLE"
+    },
+    {
+        "description": "I am a production table.",
+        "name": "first_column",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "description": "You cannot take me with you.",
+        "name": "companion_column",
+        "type": "BOOL",
+        "mode": "NULLABLE"
+    }
+]
