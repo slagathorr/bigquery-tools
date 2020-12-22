@@ -1,0 +1,22 @@
+Label,Primary Health Insurance Coverage,,,
+Section Name,Health Care Access,,,
+Module Number,14,,,
+Question Number,1,,,
+Column,357-358,,,
+Type of Variable,Num,,,
+SAS Variable Name,HLTHCVR1,,,
+Question Prologue,,,,
+Question,What is the primary source of your health care coverage? Is it…,,,
+DATA,,,,
+Value,Value Label,Frequency,Percentage,Weighted Percentage
+01,A plan purchased through an employer or union Notes: includes plans purchased through another person's employer,"36,252",37.56,42.88
+02,A plan that you or another family member buys on your own,"8,023",8.31,10.27
+03,Medicare,"34,829",36.09,22.8
+04,Medicaid or other state program,"7,700",7.98,11.4
+05,"TRICARE (formerly CHAMPUS), VA, or Military","3,147",3.26,2.74
+06,"Alaska Native, Indian Health Service, Tribal Health Services",101,0.1,0.1
+07,Some other source,"3,160",3.27,3.49
+08,None (no coverage),"1,164",1.21,3.99
+77,Don’t know/Not Sure,"1,204",1.25,1.49
+99,Refused,933,0.97,0.83
+BLANK,Not asked or Missing,"321,755",.,.

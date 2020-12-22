@@ -1,0 +1,16 @@
+Label,Ever Told Had Asthma,,,
+Section Name,Chronic Health Conditions,,,
+Section Number,6,,,
+Question Number,4,,,
+Column,120,,,
+Type of Variable,Num,,,
+SAS Variable Name,ASTHMA3,,,
+Question Prologue,,,,
+Question,(Ever told) you had asthma?,,,
+DATA,,,,
+Value,Value Label,Frequency,Percentage,Weighted Percentage
+1,Yes,"58,921",14.09,14.49
+2,No—Go to Section 06.06 CHCSCNCR,"357,838",85.55,85.18
+7,Don’t know/Not Sure—Go to Section 06.06 CHCSCNCR,"1,317",0.31,0.29
+9,Refused—Go to Section 06.06 CHCSCNCR,184,0.04,0.04
+,Not asked or Missing,8,.,.
