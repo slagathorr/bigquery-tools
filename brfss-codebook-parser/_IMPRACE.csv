@@ -1,0 +1,17 @@
+Label,Imputed race/ethnicity value,,,
+Section Name,Weighting Variables,,,
+Section Number,1,,,
+Question Number,12,,,
+Column,1471-1472,,,
+Type of Variable,Num,,,
+SAS Variable Name,_IMPRACE,,,
+Question Prologue,,,,
+Question,"Imputed race/ethnicity value  (This value is the reported race/ethnicity or an imputed race/ethnicity, if the respondent refused to give a race/ethnicity. The value of the imputed race/ethnicity will be the most common race/ethnicity response for that region of the state)",,,
+DATA,,,,
+Value,Value Label,Frequency,Percentage,Weighted Percentage
+1,"White, Non-Hispanic","318,594",76.17,62.26
+2,"Black, Non-Hispanic","31,735",7.59,11.69
+3,"Asian, Non-Hispanic","9,296",2.22,5.28
+4,"American Indian/Alaskan Native, Non-Hispanic","6,697",1.6,1.06
+5,Hispanic,"37,527",8.97,17.52
+6,"Other race, Non-Hispanic","14,419",3.45,2.2
